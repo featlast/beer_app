@@ -1,5 +1,7 @@
+import 'package:beer_app/src/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+// import 'package:rive/rive.dart';
 
 class AnimationWidgetWelcome extends StatelessWidget {
   const AnimationWidgetWelcome({
@@ -22,7 +24,7 @@ class AnimationWidgetWelcome extends StatelessWidget {
           // height: size * .6,
           width: double.infinity,
           decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 51, 49, 49),
+              color: BeerAppColors.colorPrimary,
               borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(-50),
                   bottomRight: Radius.circular(-50))),
@@ -30,18 +32,23 @@ class AnimationWidgetWelcome extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Lottie.asset('assets/animations/beers1.json',
-                    fit: BoxFit.contain
-                    // width: MediaQuery.of(context).size.width * 0.7,
-                    // height: MediaQuery.of(context).size.width * 0.7,
-                    ),
+                child:
+                    // RiveAnimation.asset(
+                    //   'assets/animations/eye.riv',
+                    //   fit:BoxFit.contain ,
+                    // )
+                    Lottie.asset('assets/animations/beers1.json',
+                        fit: BoxFit.contain
+                        // width: MediaQuery.of(context).size.width * 0.7,
+                        // height: MediaQuery.of(context).size.width * 0.7,
+                        ),
               ),
               const Text(
                 "Cheerss!!!",
                 style: TextStyle(
                     fontSize: 50,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: BeerAppColors.colorWhite,
                     fontFamily: 'OpenSans'),
               )
             ],

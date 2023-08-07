@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../components/components.dart';
 import '../screens/screens.dart';
+import 'package:beer_app/src/theme/colors.dart';
 
 class BottomWelcome extends StatelessWidget {
   const BottomWelcome({
@@ -26,12 +27,12 @@ class BottomWelcome extends StatelessWidget {
         decoration: const BoxDecoration(
             boxShadow: [
               BoxShadow(
-                  color: Colors.yellow,
+                  color: BeerAppColors.colorSecundary,
                   blurRadius: 10.0,
                   spreadRadius: 2.0,
                   offset: Offset(5.0, 5.0))
             ],
-            color: Colors.deepOrange,
+            color: BeerAppColors.colorSecundary,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(50), topRight: Radius.circular(50))),
         child: Column(
@@ -63,7 +64,7 @@ class BottomWelcome extends StatelessWidget {
               children: [
                 CustomButton(
                   text: "Sign In",
-                  color: Colors.black,
+                  color: BeerAppColors.colorBlack,
                   textColor: Colors.white,
                   onTap: () {
                     // Navigator.push(
@@ -76,7 +77,7 @@ class BottomWelcome extends StatelessWidget {
                 ),
                 CustomButton(
                   text: "Sign Up",
-                  color: Colors.white,
+                  color: BeerAppColors.colorWhite,
                   textColor: Colors.black,
                   onTap: () {
                     Navigator.push(
