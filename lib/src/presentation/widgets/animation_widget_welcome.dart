@@ -14,7 +14,7 @@ class AnimationWidgetWelcome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => print('contenedor beers'),
+      onTap: () => Navigator.pushNamed(context, "/login"),
       child: Positioned(
         top: 0,
         left: 0,
