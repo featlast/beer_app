@@ -12,7 +12,7 @@ class RegisterScreen extends StatelessWidget {
         elevation: 0,
       ),
       backgroundColor: BeerAppColors.colorPrimary,
-      body: Center(child: Text('Register Screen')),
+      body: Center(child: TextFormField()),
     );
   }
 }

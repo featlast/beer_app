@@ -2,11 +2,17 @@ import 'package:beer_app/src/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../utils/utils.dart';
+
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController email = TextEditingController();
+    TextEditingController password = TextEditingController();
+    final _formLoginKey = GlobalKey<FormState>();
+
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: BeerAppColors.colorSecundary,
@@ -32,67 +38,81 @@ class LoginScreen extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Expanded(
-            child: Container(
-              width: double.infinity,
-              height: size.height,
-              decoration: const BoxDecoration(
-                  color: BeerAppColors.colorPrimary,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(50),
-                      topRight: Radius.circular(50)),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.black,
-                        blurRadius: 10,
-                        spreadRadius: 2.0,
-                        offset: Offset(5.0, 5.0))
-                  ]),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 70, horizontal: 15),
-                    child: Form(
-                        child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        _email(),
-                        const SizedBox(height: 15),
-                        _password(),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            style: const ButtonStyle(
-                                foregroundColor: MaterialStatePropertyAll(
-                                    BeerAppColors.colorSecundary)),
-                            child: const Text("Forgot Password?")
-                            // TextButton.styleFrom(
-                            //     foregroundColor: BeerAppColors.colorBlack),
-                            ),
-                        const SizedBox(
-                          height: 80,
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 5),
-                          width: double.infinity,
-                          height: 55,
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: BeerAppColors.colorSecundary,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50))),
-                            child: const Text("Sign In"),
-                          ),
-                        )
-                      ],
-                    )),
-                  )
-                ],
+            child: SingleChildScrollView(
+              child: Container(
+                width: double.infinity,
+                height: size.height,
+                decoration: const BoxDecoration(
+                    color: BeerAppColors.colorPrimary,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(50),
+                        topRight: Radius.circular(50)),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black,
+                          blurRadius: 10,
+                          spreadRadius: 2.0,
+                          offset: Offset(5.0, 5.0))
+                    ]),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 70, horizontal: 15),
+                      child: FocusScope(
+                        child: Form(
+                            key: _formLoginKey,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                _email(email),
+                                const SizedBox(height: 15),
+                                _password(password),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    style: const ButtonStyle(
+                                        foregroundColor:
+                                            MaterialStatePropertyAll(
+                                                BeerAppColors.colorSecundary)),
+                                    child: const Text("Forgot Password?")
+                                    // TextButton.styleFrom(
+                                    //     foregroundColor: BeerAppColors.colorBlack),
+                                    ),
+                                const SizedBox(
+                                  height: 80,
+                                ),
+                                Container(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 5),
+                                  width: double.infinity,
+                                  height: 55,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      if (_formLoginKey.currentState!
+                                          .validate()) {
+                                        print("INICIO DE SESION");
+                                      }
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            BeerAppColors.colorSecundary,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(50))),
+                                    child: const Text("Sign In"),
+                                  ),
+                                )
+                              ],
+                            )),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           )
@@ -101,8 +121,13 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  TextFormField _email() {
+  TextFormField _email(TextEditingController email) {
     return TextFormField(
+      // autofocus: true,
+      keyboardType: TextInputType.emailAddress,
+      validator: (value) {
+        return EmailValidator.validate(value!);
+      },
       decoration: InputDecoration(
           hintText: "Username",
           focusedBorder: OutlineInputBorder(
@@ -117,8 +142,15 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  TextFormField _password() {
+  TextFormField _password(TextEditingController password) {
     return TextFormField(
+      obscureText: true,
+      validator: (value) {
+        if (value!.length < 6) {
+          return "Min 6 Caracteres *";
+        }
+        return null;
+      },
       decoration: InputDecoration(
           hintText: "Password",
           focusedBorder: OutlineInputBorder(
