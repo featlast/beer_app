@@ -4,15 +4,19 @@ import 'package:flutter/services.dart';
 
 import '../../utils/utils.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    TextEditingController email = TextEditingController();
-    TextEditingController password = TextEditingController();
-    final _formLoginKey = GlobalKey<FormState>();
+  State<LoginScreen> createState() => _LoginScreenState();
+}
 
+class _LoginScreenState extends State<LoginScreen> {
+  final _formLoginKey = GlobalKey<FormState>();
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: BeerAppColors.colorSecundary,
@@ -59,57 +63,89 @@ class LoginScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 70, horizontal: 15),
-                      child: FocusScope(
-                        child: Form(
-                            key: _formLoginKey,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                _email(email),
-                                const SizedBox(height: 15),
-                                _password(password),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                TextButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    style: const ButtonStyle(
-                                        foregroundColor:
-                                            MaterialStatePropertyAll(
-                                                BeerAppColors.colorSecundary)),
-                                    child: const Text("Forgot Password?")
-                                    // TextButton.styleFrom(
-                                    //     foregroundColor: BeerAppColors.colorBlack),
-                                    ),
-                                const SizedBox(
-                                  height: 80,
-                                ),
-                                Container(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 5),
-                                  width: double.infinity,
-                                  height: 55,
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      if (_formLoginKey.currentState!
-                                          .validate()) {
-                                        print("INICIO DE SESION");
-                                      }
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                        backgroundColor:
-                                            BeerAppColors.colorSecundary,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(50))),
-                                    child: const Text("Sign In"),
+                      child: Form(
+                          key: _formLoginKey,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              _email(email),
+                              const SizedBox(height: 15),
+                              _password(password),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  style: const ButtonStyle(
+                                      foregroundColor: MaterialStatePropertyAll(
+                                          BeerAppColors.colorSecundary)),
+                                  child: const Text("Forgot Password?")
+                                  // TextButton.styleFrom(
+                                  //     foregroundColor: BeerAppColors.colorBlack),
                                   ),
-                                )
-                              ],
-                            )),
-                      ),
+                              const SizedBox(
+                                height: 80,
+                              ),
+                              Container(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 5),
+                                width: double.infinity,
+                                height: 55,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    if (_formLoginKey.currentState!
+                                        .validate()) {
+                                      print("INICIO DE SESION");
+                                    }
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor:
+                                          BeerAppColors.colorSecundary,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(50))),
+                                  child: const Text("Sign In"),
+                                ),
+                              )
+                            ],
+                          )),
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 30),
+                      width: double.infinity,
+                      height: 50,
+                      child: ElevatedButton(
+                          onPressed: () {},
+                          child: Row(
+                            children: [
+                              Image.network(
+                                "https://cdn-icons-png.flaticon.com/512/300/300221.png",
+                                height: 35,
+                                width: 35,
+                              ),
+                              Spacer(),
+                              Text(
+                                "Continue with Google",
+                                style: TextStyle(
+                                    fontFamily: "OpenSans",
+                                    color: Colors.black12,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              Spacer(),
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.arrow_forward,
+                                    color: Colors.black12,
+                                  )),
+                            ],
+                          ),
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: BeerAppColors.colorWhite,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50)))),
                     )
                   ],
                 ),
