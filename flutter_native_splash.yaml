@@ -1,0 +1,13 @@
+flutter_native_splash:
+  color: "#E25E3E"
+  image: assets/beer.png
+  color_dark: "#121212"
+  image_dark: assets/beer.png
+
+  android_12:
+    image: assets/beer.png
+    icon_background_color: "#E25E3E"
+    image_dark: assets/beer.png
+    icon_background_color_dark: "#121212"
+
+  web: true

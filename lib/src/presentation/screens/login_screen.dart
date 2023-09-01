@@ -68,6 +68,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
+                              SizedBox(
+                                height: 40,
+                              ),
                               _email(email),
                               const SizedBox(height: 15),
                               _password(password),
@@ -86,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   //     foregroundColor: BeerAppColors.colorBlack),
                                   ),
                               const SizedBox(
-                                height: 80,
+                                height: 50,
                               ),
                               Container(
                                 padding:
@@ -113,7 +116,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           )),
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 30),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
                       width: double.infinity,
                       height: 50,
                       child: ElevatedButton(
@@ -130,7 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 "Continue with Google",
                                 style: TextStyle(
                                     fontFamily: "OpenSans",
-                                    color: Colors.black12,
+                                    color: Colors.black54,
                                     fontWeight: FontWeight.w600),
                               ),
                               Spacer(),
@@ -138,7 +143,47 @@ class _LoginScreenState extends State<LoginScreen> {
                                   onPressed: () {},
                                   icon: Icon(
                                     Icons.arrow_forward,
-                                    color: Colors.black12,
+                                    color: Colors.black54,
+                                  )),
+                            ],
+                          ),
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: BeerAppColors.colorWhite,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50)))),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
+                      width: double.infinity,
+                      height: 50,
+                      child: ElevatedButton(
+                          onPressed: () {},
+                          child: Row(
+                            children: [
+                              Image.network(
+                                "https://cdn-icons-png.flaticon.com/512/145/145802.png",
+                                height: 35,
+                                width: 35,
+                              ),
+                              Spacer(),
+                              Text(
+                                "Continue with Google",
+                                style: TextStyle(
+                                    fontFamily: "OpenSans",
+                                    color: Colors.black54,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              Spacer(),
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.arrow_forward,
+                                    color: Colors.black54,
                                   )),
                             ],
                           ),
